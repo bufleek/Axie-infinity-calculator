@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">AxieCalc</string>
+    <string name="app_name">Arena Calculator</string>
     <string name="notification_channel_general">General Notifications</string>
     <string name="notification_exit">Terminate</string>
-    <string name="notification_text">Axie Infinity calculator popup is running, click to end</string>
+    <string name="notification_text">Arena calculator popup is running, click to terminate</string>
     <string name="common_ok">Ok</string>
     <string name="permission_error_title">Permissions not granted</string>
     <string name="permission_error_text">The app will not function properly</string>
