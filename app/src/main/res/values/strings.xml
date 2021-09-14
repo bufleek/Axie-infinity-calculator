@@ -6,11 +6,11 @@
     <string name="common_ok">Ok</string>
     <string name="permission_error_title">Permissions not granted</string>
     <string name="permission_error_text">The app will not function properly</string>
-    <string name="energy_gained">Energy gained</string>
-    <string name="energy_destroyed">Energy destroyed</string>
-    <string name="energy_used">Energy used</string>
-    <string name="cards_gained">Cards gained</string>
-    <string name="cards_used">Cards used</string>
+    <string name="energy_gained">Energy Gained</string>
+    <string name="energy_destroyed">Energy Destroyed</string>
+    <string name="energy_used">Energy Used</string>
+    <string name="cards_gained">Cards Gained</string>
+    <string name="cards_used">Cards Used</string>
     <string name="next_round_energy">Next round energy</string>
     <string name="next_round_cards">Next round cards</string>
     <string name="cards_destroyed">Cards destroyed</string>

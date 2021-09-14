@@ -162,6 +162,12 @@ class FloatingWindow(private val context: Context) {
         rootView.findViewById<TextView>(R.id.calculate).setOnClickListener {
             currentEnergy = nextRoundEnergy()
             currentCards = nextRoundCards()
+            energyUsed = 0
+            energyDestroyed = 0
+            energyGained = 0
+            cardsGained = 0
+            cardsDestroyed = 0
+            cardsUsed = 0
             updateViews()
         }
 
@@ -266,7 +272,7 @@ class FloatingWindow(private val context: Context) {
     }
 
     companion object {
-        private const val windowInputWidth = 300
-        private const val windowInputHeight = 245
+        private const val windowInputWidth = 310
+        private const val windowInputHeight = 250
     }
 }
