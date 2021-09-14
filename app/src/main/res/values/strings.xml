@@ -14,4 +14,5 @@
     <string name="next_round_energy">Next round energy</string>
     <string name="next_round_cards">Next round cards</string>
     <string name="cards_destroyed">Cards destroyed</string>
+    <string name="opponent_energy">Opponent energy</string>
 </resources>

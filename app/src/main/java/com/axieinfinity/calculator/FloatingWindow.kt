@@ -21,23 +21,15 @@ class FloatingWindow(private val context: Context) {
     private val tvEnergyUsed: TextView = rootView.findViewById(R.id.energy_used)
     private val tvEnergyDestroyed: TextView = rootView.findViewById(R.id.energy_destroyed)
     private val tvEnergyGained: TextView = rootView.findViewById(R.id.energy_gained)
-    private val tvCardsUsed: TextView = rootView.findViewById(R.id.cards_used)
-    private val tvCardsGained: TextView = rootView.findViewById(R.id.cards_gained)
-    private val tvCardsDestroyed: TextView = rootView.findViewById(R.id.cards_destroyed)
     private val expandContent: View = rootView.findViewById(R.id.expand_content)
     private val collapseContent: View = rootView.findViewById(R.id.minimize_content)
     private val content: View = rootView.findViewById(R.id.content)
     private val inputContainer: View = rootView.findViewById(R.id.input_container)
     private val tvCurrentEnergy: TextView = rootView.findViewById(R.id.current_energy)
-    private val tvCurrentCards: TextView = rootView.findViewById(R.id.current_cards)
     private var energyUsed = 0
     private var energyDestroyed = 0
     private var energyGained = 0
-    private var cardsUsed = 0
-    private var cardsGained = 0
     private var currentEnergy = 3
-    private var currentCards = 6
-    private var cardsDestroyed = 0
 
     private val windowParams = WindowManager.LayoutParams(
         0,
@@ -111,8 +103,8 @@ class FloatingWindow(private val context: Context) {
         }
 
         rootView.findViewById<ImageButton>(R.id.increase_energy_gained).setOnClickListener {
-                energyGained++
-                updateViews()
+            energyGained++
+            updateViews()
         }
         rootView.findViewById<ImageButton>(R.id.reduce_energy_gained).setOnClickListener {
             if (energyGained != 0) {
@@ -121,47 +113,15 @@ class FloatingWindow(private val context: Context) {
             }
         }
 
-        rootView.findViewById<ImageButton>(R.id.increase_cards_used).setOnClickListener {
-            cardsUsed++
-            updateViews()
-        }
-        rootView.findViewById<ImageButton>(R.id.reduce_cards_used).setOnClickListener {
-            if (cardsUsed != 0) {
-                cardsUsed--
-                updateViews()
-            }
-        }
-
-        rootView.findViewById<ImageButton>(R.id.increase_cards_gained).setOnClickListener {
-                cardsGained++
-                updateViews()
-        }
-        rootView.findViewById<ImageButton>(R.id.reduce_cards_gained).setOnClickListener {
-            if (cardsGained != 0) {
-                cardsGained--
-                updateViews()
-            }
-        }
-
-        rootView.findViewById<ImageButton>(R.id.reduce_cards_destroyed).setOnClickListener {
-            if (cardsDestroyed != 0) {
-                cardsDestroyed--
-                updateViews()
-            }
-        }
-
-        rootView.findViewById<ImageButton>(R.id.increase_cards_destroyed).setOnClickListener {
-            cardsDestroyed++
-            updateViews()
-        }
-
         rootView.findViewById<ImageButton>(R.id.close).setOnClickListener {
             close()
         }
 
         rootView.findViewById<TextView>(R.id.calculate).setOnClickListener {
             currentEnergy = nextRoundEnergy()
-            currentCards = nextRoundCards()
+            energyGained = 0
+            energyDestroyed = 0
+            energyUsed = 0
             updateViews()
         }
 
@@ -189,26 +149,18 @@ class FloatingWindow(private val context: Context) {
 
         rootView.findViewById<TextView>(R.id.reset_rounds).setOnClickListener {
             currentEnergy = 3
-            currentCards = 6
             energyUsed = 0
             energyDestroyed = 0
             energyGained = 0
-            cardsGained = 0
-            cardsDestroyed = 0
-            cardsUsed = 0
             updateViews()
         }
     }
 
     private fun updateViews() {
-        tvCardsDestroyed.text = cardsDestroyed.toString()
-        tvCardsGained.text = cardsGained.toString()
-        tvCardsUsed.text = cardsUsed.toString()
         tvEnergyGained.text = energyGained.toString()
         tvEnergyDestroyed.text = energyDestroyed.toString()
         tvEnergyUsed.text = energyUsed.toString()
-        tvCurrentEnergy.text = "Energy - $currentEnergy"
-        tvCurrentCards.text = "Cards - $currentCards"
+        tvCurrentEnergy.text = currentEnergy.toString()
     }
 
     init {
@@ -260,13 +212,8 @@ class FloatingWindow(private val context: Context) {
         return if (value > 10) 10 else value
     }
 
-    private fun nextRoundCards(): Int {
-        val value =  currentCards - cardsUsed + cardsGained - cardsDestroyed + 3
-        return if (value > 12) 12 else value
-    }
-
     companion object {
-        private const val windowInputWidth = 300
-        private const val windowInputHeight = 245
+        private const val windowInputWidth = 200
+        private const val windowInputHeight = 310
     }
 }
