@@ -15,4 +15,20 @@
     <string name="next_round_cards">Next round cards</string>
     <string name="cards_destroyed">Cards Destroyed</string>
     <string name="opponent_energy">Opponent Energy</string>
+    <string name="free_plan_title">Enjoy our free plan</string>
+    <string name="get_reward">Watch Ads</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="paid_plan_title">Don\'t want to watch Ads?</string>
+    <string name="paid_plan_desc">Use Energy Calculator without ads for $1 a month</string>
+    <string name="free_plan_desc">Watch 5 ads to use energy calculator for free</string>
+    <string name="price">Price</string>
+    <string name="_3">3</string>
+    <string name="next">Next</string>
+    <string name="reset">Reset</string>
+    <string name="current_cards">Current Cards</string>
+    <string name="upper_right_number">Upper Right Number</string>
+    <string name="used_card_last_round">Used Card Last Round</string>
+    <string name="draw_card_last_round">Draw Card Last Round</string>
+    <string name="discard_card_last_round">Discard Card Last Round</string>
+    <string name="calculate">Calculate</string>
 </resources>

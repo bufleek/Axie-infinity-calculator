@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.axieinfinity.calculator",
+  "applicationId": "com.axieinfinity.energycalculator",
   "variantName": "release",
   "elements": [
     {
