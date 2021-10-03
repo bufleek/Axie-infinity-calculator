@@ -64,10 +64,8 @@ class DraggableTouchListener(
             MotionEvent.ACTION_DOWN -> {
                 pointerStartX = motionEvent.rawX.toInt()
                 pointerStartY = motionEvent.rawY.toInt()
-                with(initialPosition()) {
-                    initialX = x
-                    initialY = y
-                }
+                initialX = (motionEvent.rawX - view.width/2).toInt()
+                initialY = (motionEvent.rawY - view.height/2).toInt()
                 moving = false
                 longClickPerformed = false
                 scheduleLongClickTimer()

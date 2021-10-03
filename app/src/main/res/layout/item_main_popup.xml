@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_floating_window"
-        android:visibility="gone"
+        android:visibility="visible"
         tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,29 +24,19 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/minimize"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/chevron_up_box"
-                android:visibility="visible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
                 android:id="@+id/settings"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/ic_baseline_settings_applications_24"
                 android:visibility="visible"
-                app:layout_constraintStart_toEndOf="@id/minimize"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible" />
 
             <ImageButton
                 android:id="@+id/close"
-                android:layout_width="wrap_content"
+                android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/ic_close"
@@ -270,21 +260,5 @@
                 app:layout_constraintTop_toBottomOf="@+id/img_energy_gained" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/expand_energy_calc"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:visibility="visible"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="visible">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/logo" />
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

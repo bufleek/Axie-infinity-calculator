@@ -5,10 +5,9 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_arena"
+        android:id="@+id/card_energy_calc"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="8dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +17,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:paddingHorizontal="4dp"
-            android:src="@drawable/arena" />
+            android:src="@drawable/ic_energy_calc" />
 
     </androidx.cardview.widget.CardView>
 
@@ -29,9 +28,10 @@
         android:layout_marginVertical="8dp"
         android:background="@color/overlay"
         app:cardCornerRadius="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_arena">
+        app:layout_constraintTop_toBottomOf="@+id/card_energy_calc">
 
         <ImageView
             android:layout_width="match_parent"
@@ -42,13 +42,31 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_arena"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_card_counter">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:paddingHorizontal="4dp"
+            android:src="@drawable/arena" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginVertical="8dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_card_counter">
+        app:layout_constraintTop_toBottomOf="@id/card_arena">
 
         <ImageView
             android:id="@+id/img_close"

@@ -35,7 +35,7 @@
         android:id="@+id/current_cards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="3"
+        android:text="-"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"

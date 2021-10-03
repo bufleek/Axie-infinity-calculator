@@ -38,8 +38,6 @@ class FloatingWindow(
     private val reset = root.findViewById<TextView>(R.id.reset_rounds)
     private val next = root.findViewById<TextView>(R.id.calculate)
     private val undo = root.findViewById<ImageView>(R.id.img_undo)
-    private val expandEnergyCalc = root.findViewById<CardView>(R.id.expand_energy_calc)
-    private val minimize = root.findViewById<ImageButton>(R.id.minimize)
     private var energyUsed = 0
     private var energyDestroyed = 0
     private var energyGained = 0
@@ -58,21 +56,18 @@ class FloatingWindow(
         params.gravity = Gravity.TOP or Gravity.LEFT
         params.width = (widthInDp * dm.density).toInt()
         params.height = (heightInDp * dm.density).toInt()
-        params.x = ((dm.widthPixels - params.width) - (dm.density * 10)).toInt()
-        params.y =
-            if ((dm.density * 100) < (dm.density * Arena.ARENA_HEIGHT)) ((dm.density * Arena.ARENA_HEIGHT + 20).toInt()) else params.y
+        params.x = 0
+//            ((dm.widthPixels - params.width) - (dm.density * 10)).toInt()
+        params.y = 0
+//            if ((dm.density * 100) < (dm.density * Arena.ARENA_HEIGHT)) ((dm.density * Arena.ARENA_HEIGHT + 20).toInt()) else params.y
     }
 
     private fun initWindowParams() {
-        calculateSizeAndPosition(windowParams, windowInputWidthMin, windowInputHeightMin)
+        calculateSizeAndPosition(windowParams, windowInputWidth, windowInputHeight)
     }
 
     private fun initWindow() {
-        content.registerDraggableTouchListener(
-            initialPosition = { Point(windowParams.x, windowParams.y) },
-            positionListener = { x, y -> setPosition(x, y) }
-        )
-        expandEnergyCalc.registerDraggableTouchListener(
+        root.registerDraggableTouchListener(
             initialPosition = { Point(windowParams.x, windowParams.y) },
             positionListener = { x, y -> setPosition(x, y) }
         )
@@ -139,21 +134,6 @@ class FloatingWindow(
             it.visibility = View.VISIBLE
             context.startSettingsActivity()
         }
-
-        expandEnergyCalc.setOnClickListener {
-            content.visibility = View.VISIBLE
-            it.visibility = View.GONE
-            calculateSizeAndPosition(windowParams, windowInputWidth, windowInputHeight)
-            updateWindow()
-        }
-
-        minimize.setOnClickListener {
-            content.visibility = View.GONE
-            expandEnergyCalc.visibility = View.VISIBLE
-            calculateSizeAndPosition(windowParams, 50, 50)
-            updateWindow()
-        }
-
         undo.setOnClickListener { onUndo() }
     }
 
@@ -201,8 +181,6 @@ class FloatingWindow(
             return
         }
         try {
-            content.visibility = View.GONE
-            expandEnergyCalc.visibility = View.VISIBLE
             initWindowParams()
             windowManager.addView(root, windowParams)
             isOpen = true
@@ -219,11 +197,13 @@ class FloatingWindow(
         try {
             windowManager.removeView(root)
             isOpen = false
+            FloatingWindowActions.getInstance().listener = this
         } catch (e: Exception) {
         }
     }
 
     private fun setPosition(x: Int, y: Int) {
+        initWindowParams()
         windowParams.x = x
         windowParams.y = y
         updateWindow()
@@ -260,8 +240,6 @@ class FloatingWindow(
     companion object {
         private const val windowInputWidth = 180
         private const val windowInputHeight = 265
-        private const val windowInputWidthMin = 50
-        private const val windowInputHeightMin = 50
         const val MAX_ROUNDS = 10
     }
 }

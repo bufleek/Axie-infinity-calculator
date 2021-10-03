@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Point
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.WindowManager
 import android.widget.*
 import com.axieinfinity.energycalculator.R
@@ -122,17 +123,17 @@ class CardCounter(
             }
         }
         reset.setOnClickListener {
-            currentCards = 3
-            tvCurrentCards.text = currentCards.toString()
+            tvCurrentCards.text = "-"
             usedCards = 0
             drawCards = 0
             discardCards = 0
             upperRightNumber = 0
             updateViews()
+            calculate.visibility = View.VISIBLE
         }
 
         calculate.setOnClickListener {
-            val calc = upperRightNumber - usedCards + drawCards - discardCards
+            val calc = upperRightNumber - usedCards + drawCards - discardCards+3
             currentCards = if (calc >= 12) 12 else if (calc <= 3) 3 else calc
             tvCurrentCards.text = currentCards.toString()
             usedCards = 0
@@ -140,6 +141,7 @@ class CardCounter(
             discardCards = 0
             upperRightNumber = 0
             updateViews()
+            it.visibility = View.GONE
         }
     }
 
@@ -152,9 +154,10 @@ class CardCounter(
         params.gravity = Gravity.TOP or Gravity.LEFT
         params.width = (widthInDp * dm.density).toInt()
         params.height = (heightInDp * dm.density).toInt()
-        params.x =
-            ((dm.widthPixels - windowParams.width) - (dm.density * (Menu.MENU_WIDTH + 0))).toInt()
+        //((dm.widthPixels - params.width) - (dm.density * 10)).toInt()
+        params.x = 0
         params.y = 0
+//            if ((dm.density * 100) < (dm.density * Arena.ARENA_HEIGHT)) ((dm.density * Arena.ARENA_HEIGHT + 20).toInt()) else params.y
     }
 
     private fun initWindowParams() {
@@ -163,7 +166,7 @@ class CardCounter(
 
     companion object {
         private const val WIDTH = 180
-        private const val HEIGHT = 310
+        private const val HEIGHT = 325
     }
 
     override fun onOpen() {
@@ -185,11 +188,6 @@ class CardCounter(
             windowManager.removeView(root)
             isOpen = false
         } catch (e: Exception) {
-            Toast.makeText(
-                root.context,
-                "We are having problems closing card counter window",
-                Toast.LENGTH_LONG
-            ).show()
         }
     }
 
