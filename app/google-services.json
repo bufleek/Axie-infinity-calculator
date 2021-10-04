@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "362486551758",
+    "project_id": "axie-energy-calculator-98c1d",
+    "storage_bucket": "axie-energy-calculator-98c1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362486551758:android:694999a4cb6f1d30cf2c9f",
+        "android_client_info": {
+          "package_name": "com.axieinfinity.calculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362486551758-mg6dscn7blr5mjiqi2ke2v3p5a3q1eat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt_jrYXjH1hJ-5vO0jliTWXbEPbeTnlBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362486551758-mg6dscn7blr5mjiqi2ke2v3p5a3q1eat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
