@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.axieinfinity.calculator.R
+import com.axieinfinity.calculator.ui.floating_windows.FloatingWindow
 import com.axieinfinity.calculator.ui.main.MainActivity
 import com.axieinfinity.calculator.ui.settings.SettingsActivity
 

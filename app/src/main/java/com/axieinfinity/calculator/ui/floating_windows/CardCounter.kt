@@ -1,6 +1,7 @@
 package com.axieinfinity.calculator.ui.floating_windows
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Point
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -192,9 +193,10 @@ class CardCounter(
     }
 
     override fun onColorChanged(color: Int) {
-        topFrame.setBackgroundColor(color)
-        reset.setBackgroundColor(color)
-        calculate.setBackgroundColor(color)
-        root.setBackgroundColor(color)
+        val colorState = ColorStateList.valueOf(color)
+        topFrame.backgroundTintList = colorState
+        reset.backgroundTintList = colorState
+        calculate.backgroundTintList = colorState
+        root.backgroundTintList = colorState
     }
 }

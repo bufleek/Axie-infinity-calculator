@@ -26,7 +26,7 @@
     <string name="next">Next</string>
     <string name="reset">Reset</string>
     <string name="current_cards">Current Cards</string>
-    <string name="upper_right_number">Opponent\'s Cards Last Round</string>
+    <string name="upper_right_number">Cards Last Round</string>
     <string name="used_card_last_round">Used Card Last Round</string>
     <string name="draw_card_last_round">Draw Card Last Round</string>
     <string name="discard_card_last_round">Discard Card Last Round</string>
