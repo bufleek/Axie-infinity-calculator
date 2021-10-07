@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_overlay"
     tools:context=".ui.main.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,11 +15,10 @@
         tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_overlay"
-            android:backgroundTint="@color/overlay"
+            android:background="@drawable/bg_rounded_top"
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -47,10 +45,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/input_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+            app:layout_constraintTop_toBottomOf="@id/top"
             tools:layout_editor_absoluteX="0dp">
 
             <TextView

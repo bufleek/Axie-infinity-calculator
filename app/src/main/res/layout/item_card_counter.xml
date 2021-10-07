@@ -10,7 +10,7 @@
         android:id="@+id/top_frame"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@drawable/bg_overlay"
+        android:background="@drawable/bg_rounded_top"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton

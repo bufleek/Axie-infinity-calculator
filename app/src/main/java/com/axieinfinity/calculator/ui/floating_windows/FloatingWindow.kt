@@ -36,6 +36,7 @@ class FloatingWindow(
     private val reset = root.findViewById<TextView>(R.id.reset_rounds)
     private val next = root.findViewById<TextView>(R.id.calculate)
     private val undo = root.findViewById<ImageView>(R.id.img_undo)
+    private val top = root.findViewById<View>(R.id.top)
     private var energyUsed = 0
     private var energyDestroyed = 0
     private var energyGained = 0
@@ -223,6 +224,7 @@ class FloatingWindow(
         content.backgroundTintList = colorState
         reset.backgroundTintList = colorState
         next.backgroundTintList = colorState
+        top.backgroundTintList = colorState
     }
 
     override fun onRoundsRefilled() {

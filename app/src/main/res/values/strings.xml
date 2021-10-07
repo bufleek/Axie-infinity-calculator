@@ -1,27 +1,10 @@
 <resources>
     <string name="app_name">Energy Calculator</string>
     <string name="notification_channel_general">General Notifications</string>
-    <string name="notification_exit">Terminate</string>
     <string name="notification_text">Energy calculator popup is running, click to terminate</string>
     <string name="common_ok">OK</string>
     <string name="permission_error_title">Permissions not granted</string>
     <string name="permission_error_text">The app will not function properly</string>
-    <string name="energy_gained">Energy Gained</string>
-    <string name="energy_destroyed">Energy Destroyed</string>
-    <string name="energy_used">Energy Used</string>
-    <string name="cards_gained">Cards Gained</string>
-    <string name="cards_used">Cards Used</string>
-    <string name="next_round_energy">Next round energy</string>
-    <string name="next_round_cards">Next round cards</string>
-    <string name="cards_destroyed">Cards Destroyed</string>
-    <string name="opponent_energy">Opponent Energy</string>
-    <string name="free_plan_title">Enjoy our free plan</string>
-    <string name="get_reward">Watch Ads</string>
-    <string name="subscribe">Subscribe</string>
-    <string name="paid_plan_title">Don\'t want to watch Ads?</string>
-    <string name="paid_plan_desc">Use Energy Calculator without ads for $1 a month</string>
-    <string name="free_plan_desc">Watch 5 ads to use energy calculator for free</string>
-    <string name="price">Price</string>
     <string name="_3">3</string>
     <string name="next">Next</string>
     <string name="reset">Reset</string>
