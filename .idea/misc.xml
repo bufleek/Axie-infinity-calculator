@@ -13,24 +13,41 @@
         <entry key="..\:/projects/Android/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.2046875" />
         <entry key="..\:/projects/Android/app/src/main/res/drawable/ic_baseline_remove_24.xml" value="0.2203125" />
         <entry key="..\:/projects/Android/app/src/main/res/layout/activity_main.xml" value="0.239292364990689" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/bg_btn_rounded_stroke.xml" value="0.15104166666666666" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/bg_curved_bottom_right.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/bg_curved_top_left.xml" value="0.2169230769230769" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/bg_floating_window.xml" value="0.1" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/bg_logo.xml" value="0.2169230769230769" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/bg_overlay.xml" value="0.17314814814814813" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/bg_round_logo.xml" value="0.19537037037037036" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/bg_rounded_top.xml" value="0.17760416666666667" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/chevron_up_box.xml" value="0.18981481481481483" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/gradient.xml" value="0.2169230769230769" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/ic_baseline_block_24.xml" value="0.16302083333333334" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.11875" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2203125" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/ic_baseline_settings_applications_24.xml" value="0.20925925925925926" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/ic_baseline_undo_24.xml" value="0.19814814814814816" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/ic_close.xml" value="0.2203125" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/ic_help.xml" value="0.16302083333333334" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/ic_minimize.xml" value="0.16302083333333334" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/ic_undo.xml" value="0.18981481481481483" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/drawable/recycle_variant.xml" value="0.20260416666666667" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/activity_main.xml" value="0.19405940594059407" />
-        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/activity_settings.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/activity_pc.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/activity_settings.xml" value="0.18" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/fragment_session.xml" value="0.25" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_arena.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_arena_pc.xml" value="0.25" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_card_counter.xml" value="0.21" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_card_counter_pc.xml" value="0.20416666666666666" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_free_plan.xml" value="0.20416666666666666" />
-        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_main_popup.xml" value="0.22" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_main_popup.xml" value="0.42962962962962964" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_main_popup_pc.xml" value="0.18" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_pvp_damage.xml" value="0.18645833333333334" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_slp_calculator.xml" value="0.25" />
+        <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_slp_calculator_pc.xml" value="0.25" />
         <entry key="..\:/projects/AxieCalc/app/src/main/res/layout/item_subscription.xml" value="0.20416666666666666" />
       </map>
     </option>

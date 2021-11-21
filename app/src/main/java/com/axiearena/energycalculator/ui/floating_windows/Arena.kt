@@ -9,15 +9,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.axiearena.energycalculator.R
-import com.axiearena.energycalculator.getCurrentDisplayMetrics
+import com.axiearena.energycalculator.data.models.Session
+import com.axiearena.energycalculator.utils.getCurrentDisplayMetrics
+import com.axiearena.energycalculator.utils.playSound
 import com.axiearena.energycalculator.utils.ArenaActions
-import com.axiearena.energycalculator.windowParams
+import com.axiearena.energycalculator.utils.windowParams
 
-class Arena(context: Context) : ArenaActions.OnArenaAction {
+class Arena(private val context: Context, private val isPcMode: Boolean = false, session: Session? = null) :
+    ArenaActions.OnArenaAction {
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private val layoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    private val root = layoutInflater.inflate(R.layout.item_arena, null)
+    val root =
+        layoutInflater.inflate(if (isPcMode) R.layout.item_arena_pc else R.layout.item_arena, null)
     private val tvWon: TextView = root.findViewById(R.id.won)
     private val imgWon: ImageView = root.findViewById(R.id.img_won)
     private val tvLost: TextView = root.findViewById(R.id.lost)
@@ -25,10 +29,11 @@ class Arena(context: Context) : ArenaActions.OnArenaAction {
     private val tvDrawn: TextView = root.findViewById(R.id.drawn)
     private val imgDrawn: ImageView = root.findViewById(R.id.img_drawn)
     private val imgReset: ImageView = root.findViewById(R.id.img_reset)
-    private var won = 0
-    private var lost = 0
-    private var drawn = 0
+    private var won = session?.arenaTrackerData?.win ?: 0
+    private var lost = session?.arenaTrackerData?.loss ?: 0
+    private var drawn = session?.arenaTrackerData?.draw ?: 0
     private var isOpen = false
+    private var isSoundEnabled = false
 
     init {
         ArenaActions.getInstance().listener = this
@@ -43,42 +48,70 @@ class Arena(context: Context) : ArenaActions.OnArenaAction {
     }
 
     private fun initializeArena() {
+        if (isPcMode) {
+            root.visibility = View.VISIBLE
+            root.background = null
+        }
         tvWon.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             if (won > 0) {
                 won--
                 updateArena()
             }
         }
         tvLost.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             if (lost > 0) {
                 lost--
                 updateArena()
             }
         }
         tvDrawn.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+
+            }
             if (drawn > 0) {
                 drawn--
                 updateArena()
             }
         }
         imgWon.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             won++
             updateArena()
         }
         imgLost.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             lost++
             updateArena()
         }
         imgDrawn.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             drawn++
             updateArena()
         }
         imgReset.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             drawn = 0
             won = 0
             lost = 0
             updateArena()
         }
+
+        updateArena()
     }
 
     private fun calculateSizeAndPosition(
@@ -95,11 +128,13 @@ class Arena(context: Context) : ArenaActions.OnArenaAction {
     }
 
     private fun initWindowParams() {
-        calculateSizeAndPosition(windowParams, ARENA_WIDTH, ARENA_HEIGHT)
+        if (!isPcMode) {
+            calculateSizeAndPosition(windowParams, ARENA_WIDTH, ARENA_HEIGHT)
+        }
     }
 
     override fun onOpen() {
-        if (isOpen) {
+        if (!isPcMode && isOpen) {
             onClose()
             return
         }
@@ -118,12 +153,28 @@ class Arena(context: Context) : ArenaActions.OnArenaAction {
     }
 
     override fun onClose() {
-        try {
-            windowManager.removeView(root)
-            isOpen = false
-        } catch (e: Exception) {
+        if (!isPcMode) {
+            try {
+                windowManager.removeView(root)
+                isOpen = false
+            } catch (e: Exception) {
 
+            }
         }
+        ArenaActions.getInstance().arenaData.apply {
+            win = won
+            loss = lost
+            draw = drawn
+        }
+    }
+
+    override fun onConfigsChange() {
+        initWindowParams()
+        updateArena()
+    }
+
+    override fun onSoundConfigsChange(isSoundEnabled: Boolean) {
+        this.isSoundEnabled = isSoundEnabled
     }
 
     companion object {

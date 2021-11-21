@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
-        android:name="com.axiearena.energycalculator.utils.AxieCalculator"
+        android:name=".utils.AxieCalculator"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,10 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AxieCalc">
         <activity
-            android:name="com.axiearena.energycalculator.ui.settings.SettingsActivity"
+            android:name=".ui.main.PcActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.settings.SettingsActivity"
             android:exported="true" />
         <activity
-            android:name="com.axiearena.energycalculator.ui.main.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +30,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.axiearena.energycalculator.utils.FloatingService" />
+        <service android:name=".utils.FloatingService" />
     </application>
 
 </manifest>

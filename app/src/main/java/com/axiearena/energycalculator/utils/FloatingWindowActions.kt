@@ -1,7 +1,10 @@
 package com.axiearena.energycalculator.utils
 
+import com.axiearena.energycalculator.data.models.EnergyCalcData
+
 class FloatingWindowActions private constructor() {
     var listener: OnFloatingWindowAction? = null
+    var energyCalcData: EnergyCalcData = EnergyCalcData()
 
     interface OnFloatingWindowAction {
         fun onColorChanged(color: Int)
@@ -9,6 +12,7 @@ class FloatingWindowActions private constructor() {
         fun onUndo()
         fun onOpen()
         fun onClose()
+        fun onSoundConfigChanged(isSoundEnabled: Boolean)
     }
 
     companion object {

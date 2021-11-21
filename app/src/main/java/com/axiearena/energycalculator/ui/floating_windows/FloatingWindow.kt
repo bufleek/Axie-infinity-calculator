@@ -11,22 +11,30 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.axiearena.energycalculator.R
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.Group
+import com.axiearena.energycalculator.*
 import com.axiearena.energycalculator.data.models.EnergyHistory
-import com.axiearena.energycalculator.getCurrentDisplayMetrics
+import com.axiearena.energycalculator.data.models.Session
 import com.axiearena.energycalculator.ui.main.MainActivity
 import com.axiearena.energycalculator.utils.*
-import com.axiearena.energycalculator.windowParams
 
 class FloatingWindow(
     private val context: Context,
     private val color: Int,
-    private val isSubscribed: Boolean = true
+    private val isSubscribed: Boolean = true,
+    private val isPcMode: Boolean = false,
+    private val isBasicMode: Boolean = false,
+    private val session: Session? = null
 ) : FloatingWindowActions.OnFloatingWindowAction {
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private val layoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    private val root = layoutInflater.inflate(R.layout.item_main_popup, null)
+    val root = layoutInflater.inflate(
+        if (isPcMode) R.layout.item_main_popup_pc else R.layout.item_main_popup,
+        null
+    )
+    val thumb = root.findViewById<CardView>(R.id.thumb_menu)
     private val tvEnergyUsed: TextView = root.findViewById(R.id.energy_used)
     private val tvEnergyDestroyed: TextView = root.findViewById(R.id.energy_destroyed)
     private val tvEnergyGained: TextView = root.findViewById(R.id.energy_gained)
@@ -37,14 +45,38 @@ class FloatingWindow(
     private val next = root.findViewById<TextView>(R.id.calculate)
     private val undo = root.findViewById<ImageView>(R.id.img_undo)
     private val top = root.findViewById<View>(R.id.top)
+    private val help = root.findViewById<ImageButton>(R.id.help)
+    private val blockHelp = root.findViewById<ImageButton>(R.id.block_help)
+    private val helpersGroup = root.findViewById<Group>(R.id.helper_group)
+    private val minimize = root.findViewById<ImageButton>(R.id.minimize)
     private var energyUsed = 0
     private var energyDestroyed = 0
     private var energyGained = 0
-    private var currentEnergy = 3
-    private var currentRound = 1
+    private var currentEnergy = session?.energyCalcData?.energy ?: 3
+    private var currentRound = session?.energyCalcData?.round ?: 1
     private var remainingRounds = MAX_ROUNDS
-    private var history: ArrayList<EnergyHistory> = ArrayList()
+    private var history: ArrayList<EnergyHistory> = session?.energyCalcData?.history ?: ArrayList()
     private var isOpen = false
+    private var isSoundEnabled = false
+
+    init {
+        FloatingWindowActions.getInstance().listener = this
+        initWindow()
+        if (!isPcMode) {
+            initWindowParams()
+            if (isBasicMode) {
+                onColorChanged(color)
+            } else {
+                onColorChanged(color)
+                CardCounter(context, false, session = session)
+                Arena(context, false, session = session)
+                Menu(context, isSubscribed)
+                SLPCalculator(context, color, false, session = session)
+                PvpDamage(context)
+                CardCounterActions.getInstance().listener?.onColorChanged(color)
+            }
+        }
+    }
 
     private fun calculateSizeAndPosition(
         params: WindowManager.LayoutParams,
@@ -55,26 +87,76 @@ class FloatingWindow(
         params.gravity = Gravity.TOP or Gravity.LEFT
         params.width = (widthInDp * dm.density).toInt()
         params.height = (heightInDp * dm.density).toInt()
-        params.x = 0
-//            ((dm.widthPixels - params.width) - (dm.density * 10)).toInt()
-        params.y = 0
-//            if ((dm.density * 100) < (dm.density * Arena.ARENA_HEIGHT)) ((dm.density * Arena.ARENA_HEIGHT + 20).toInt()) else params.y
+        if (thumb.visibility != View.GONE) {
+            params.x =
+                ((dm.widthPixels - params.width) - (dm.density * 10)).toInt()
+            params.y =
+                if ((dm.density * 100) < (dm.density * Arena.ARENA_HEIGHT)) ((dm.density * Arena.ARENA_HEIGHT + 20).toInt()) else params.y
+        } else {
+            params.x = 0
+            params.y = 0
+        }
     }
 
     private fun initWindowParams() {
-        calculateSizeAndPosition(windowParams, windowInputWidth, windowInputHeight)
+        if (isBasicMode && thumb.visibility != View.GONE) {
+            calculateSizeAndPosition(windowParams, thumbMenuWidth, thumbMenuHeight)
+        } else {
+            calculateSizeAndPosition(windowParams, windowInputWidth, windowInputHeight)
+        }
     }
 
     private fun initWindow() {
-        root.registerDraggableTouchListener(
-            initialPosition = { Point(windowParams.x, windowParams.y) },
-            positionListener = { x, y -> setPosition(x, y) }
-        )
+        if (isPcMode) {
+            top.visibility = View.GONE
+            content.background = null
+            reset.background = null
+            next.background = null
+        } else {
+            if (isBasicMode) {
+                minimize.visibility = View.VISIBLE
+                thumb.visibility = View.VISIBLE
+                content.visibility = View.GONE
+                thumb.registerDraggableTouchListener(
+                    initialPosition = { Point(windowParams.x, windowParams.y) },
+                    positionListener = { x, y -> setPosition(x, y) }
+                )
+                thumb.setOnClickListener {
+                    if (isSoundEnabled) {
+                        context.playSound()
+                    }
+                    content.visibility = View.VISIBLE
+                    thumb.visibility = View.GONE
+                    initWindowParams()
+                    updateWindow()
+                }
+                minimize.setOnClickListener {
+                    if (isSoundEnabled) {
+                        context.playSound()
+                    }
+                    content.visibility = View.GONE
+                    thumb.visibility = View.VISIBLE
+                    initWindowParams()
+                    updateWindow()
+                }
+                onOpen()
+            }
+            root.registerDraggableTouchListener(
+                initialPosition = { Point(windowParams.x, windowParams.y) },
+                positionListener = { x, y -> setPosition(x, y) }
+            )
+        }
         root.findViewById<ImageView>(R.id.increase_energy_used).setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             energyUsed++
             updateViews()
         }
         root.findViewById<ImageView>(R.id.reduce_energy_used).setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             if (energyUsed != 0) {
                 energyUsed--
                 updateViews()
@@ -82,10 +164,16 @@ class FloatingWindow(
         }
 
         root.findViewById<ImageView>(R.id.increase_energy_destroyed).setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             energyDestroyed++
             updateViews()
         }
         root.findViewById<ImageView>(R.id.reduce_energy_destroyed).setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             if (energyDestroyed != 0) {
                 energyDestroyed--
                 updateViews()
@@ -93,10 +181,16 @@ class FloatingWindow(
         }
 
         root.findViewById<ImageView>(R.id.increase_energy_gained).setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             energyGained++
             updateViews()
         }
         root.findViewById<ImageView>(R.id.reduce_energy_gained).setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             if (energyGained != 0) {
                 energyGained--
                 updateViews()
@@ -104,10 +198,19 @@ class FloatingWindow(
         }
 
         root.findViewById<ImageButton>(R.id.close).setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             onClose()
+            if (isBasicMode) {
+                FloatingWindowActions.getInstance().listener = null
+            }
         }
 
         next.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             history.add(EnergyHistory(currentRound, currentEnergy))
             currentEnergy = nextRoundEnergy()
             energyGained = 0
@@ -118,6 +221,9 @@ class FloatingWindow(
         }
 
         reset.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
             currentEnergy = 3
             energyUsed = 0
             energyDestroyed = 0
@@ -126,11 +232,38 @@ class FloatingWindow(
             updateViews()
         }
 
-        root.findViewById<ImageButton>(R.id.settings).setOnClickListener {
-            it.visibility = View.VISIBLE
-            context.startSettingsActivity()
+        root.findViewById<ImageButton>(R.id.minimize).setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
+            content.visibility = View.GONE
+            thumb.visibility = View.VISIBLE
+            initWindowParams()
+            updateWindow()
         }
-        undo.setOnClickListener { onUndo() }
+        undo.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
+            onUndo()
+        }
+
+        help.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
+            helpersGroup.visibility = View.VISIBLE
+            blockHelp.visibility = View.VISIBLE
+        }
+        blockHelp.setOnClickListener {
+            if (isSoundEnabled) {
+                context.playSound()
+            }
+            helpersGroup.visibility = View.GONE
+            blockHelp.visibility = View.GONE
+        }
+
+        updateViews()
     }
 
     private fun undoRound() {
@@ -160,42 +293,51 @@ class FloatingWindow(
         tvCurrentRound.text = "Round $currentRound"
     }
 
-    init {
-        FloatingWindowActions.getInstance().listener = this
-        initWindowParams()
-        initWindow()
-        onColorChanged(color)
-        CardCounter(context)
-        CardCounterActions.getInstance().listener?.onColorChanged(color)
-        Arena(context)
-        Menu(context, isSubscribed)
-    }
-
     override fun onOpen() {
-        if (isOpen) {
-            onClose()
-            return
-        }
-        try {
-            initWindowParams()
-            windowManager.addView(root, windowParams)
-            isOpen = true
-        } catch (e: Exception) {
-            Toast.makeText(
-                root.context,
-                "We are having problems showing the popup window",
-                Toast.LENGTH_LONG
-            ).show()
+        if (!isPcMode) {
+            if (isOpen) {
+                onClose()
+                return
+            }
+            try {
+                initWindowParams()
+                windowManager.addView(root, windowParams)
+                isOpen = true
+            } catch (e: Exception) {
+                Toast.makeText(
+                    root.context,
+                    "We are having problems showing the popup window",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 
     override fun onClose() {
-        try {
-            windowManager.removeView(root)
-            isOpen = false
-            FloatingWindowActions.getInstance().listener = this
-        } catch (e: Exception) {
+        if (!isPcMode) {
+            try {
+                windowManager.removeView(root)
+                isOpen = false
+                FloatingWindowActions.getInstance().listener = this
+            } catch (e: Exception) {
+            }
         }
+        FloatingWindowActions.getInstance().energyCalcData.apply {
+            energy = currentEnergy
+            round = currentRound
+            history = this@FloatingWindow.history
+        }
+        ServiceActions.getInstance().listener?.onBackUpSession(
+            Session(
+                System.currentTimeMillis(),
+                isPcMode,
+                isBasicMode,
+                FloatingWindowActions.getInstance().energyCalcData,
+                CardCounterActions.getInstance().cardCounterData,
+                ArenaActions.getInstance().arenaData,
+                SlpActions.getInstance().slpCalculatorData
+            )
+        )
     }
 
     private fun setPosition(x: Int, y: Int) {
@@ -235,9 +377,20 @@ class FloatingWindow(
         undoRound()
     }
 
+    override fun onSoundConfigChanged(isSoundEnabled: Boolean) {
+        this.isSoundEnabled = isSoundEnabled
+        ArenaActions.getInstance().listener?.onSoundConfigsChange(isSoundEnabled)
+        CardCounterActions.getInstance().listener?.onSoundConfigsChange(isSoundEnabled)
+        MenuActions.getInstance().listener?.onSoundConfigsChange(isSoundEnabled)
+        PvpActions.getInstance().listener?.onSoundConfigsChange(isSoundEnabled)
+        SlpActions.getInstance().listener?.onSoundConfigsChange(isSoundEnabled)
+    }
+
     companion object {
         private const val windowInputWidth = 180
         private const val windowInputHeight = 265
+        private const val thumbMenuWidth = 50
+        private const val thumbMenuHeight = 50
         const val MAX_ROUNDS = 10
     }
 }

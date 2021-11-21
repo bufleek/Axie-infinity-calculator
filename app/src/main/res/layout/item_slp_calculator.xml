@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_floating_window">
+
+    <TextView
+        android:id="@+id/tv_slp_history"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:ellipsize="start"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="--"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0+6+6+6+6+6+6"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/tv_slp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/onSurface"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_slp_history"
+        app:layout_constraintTop_toBottomOf="@+id/tv_slp_history"
+        tools:text="30" />
+
+    <TextView
+        android:id="@+id/tv_slp_1"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="+1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_slp_3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_slp" />
+
+    <TextView
+        android:id="@+id/tv_slp_3"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="+3"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_slp_6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_slp_1"
+        app:layout_constraintTop_toTopOf="@+id/tv_slp_1" />
+
+    <TextView
+        android:id="@+id/tv_slp_6"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="+6"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/row_equalizer"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_slp_3"
+        app:layout_constraintTop_toTopOf="@+id/tv_slp_1" />
+
+    <TextView
+        android:id="@+id/row_equalizer"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="+0"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_slp_6"
+        app:layout_constraintTop_toTopOf="@+id/tv_slp_6" />
+
+    <TextView
+        android:id="@+id/tv_slp_9"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="+9"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_slp_12"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_slp_1" />
+
+    <TextView
+        android:id="@+id/tv_slp_12"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="+12"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_slp_15"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_slp_9"
+        app:layout_constraintTop_toTopOf="@+id/tv_slp_9" />
+
+    <TextView
+        android:id="@+id/tv_slp_15"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="+15"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_slp_undo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_slp_12"
+        app:layout_constraintTop_toTopOf="@+id/tv_slp_12" />
+
+    <TextView
+        android:id="@+id/tv_slp_undo"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="Undo"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_slp_15"
+        app:layout_constraintTop_toTopOf="@+id/tv_slp_15" />
+
+    <TextView
+        android:id="@+id/tv_slp_18"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="+18"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_slp_21"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_slp_9" />
+
+    <TextView
+        android:id="@+id/tv_slp_21"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="+21"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_slp_24"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_slp_18"
+        app:layout_constraintTop_toTopOf="@+id/tv_slp_18" />
+
+    <TextView
+        android:id="@+id/tv_slp_24"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="+24"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_slp_reset"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_slp_21"
+        app:layout_constraintTop_toTopOf="@+id/tv_slp_21" />
+
+    <TextView
+        android:id="@+id/tv_slp_reset"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="@color/onSurface"
+        android:text="Reset"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_slp_24"
+        app:layout_constraintTop_toTopOf="@+id/tv_slp_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
