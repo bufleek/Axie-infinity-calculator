@@ -49,14 +49,16 @@
     <ImageView
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:background="@android:drawable/divider_horizontal_bright"
+        android:background="@drawable/divider"
+        app:tint="@color/dividers"
         app:layout_constraintEnd_toEndOf="@+id/frame_pc_quarter_1"
         app:layout_constraintStart_toEndOf="@+id/frame_pc_quarter_3" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:drawable/divider_horizontal_bright"
+        app:tint="@color/dividers"
+        android:background="@drawable/divider"
         app:layout_constraintBottom_toBottomOf="@+id/frame_pc_quarter_1"
         app:layout_constraintTop_toBottomOf="@+id/frame_pc_quarter_2" />
 

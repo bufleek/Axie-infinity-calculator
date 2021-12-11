@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdk 31
@@ -10,8 +12,8 @@ android {
         applicationId "com.axiearena.energycalculator"
         minSdk 21
         targetSdk 31
-        versionCode 4
-        versionName "2.1"
+        versionCode 6
+        versionName "3.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,11 +34,11 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-    implementation "androidx.activity:activity-ktx:1.3.1"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation "androidx.activity:activity-ktx:1.4.0"
     implementation 'androidx.datastore:datastore-preferences-core:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
@@ -46,9 +48,9 @@ dependencies {
     implementation 'com.github.duanhong169:colorpicker:1.1.6'
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
-    implementation platform('com.google.firebase:firebase-bom:28.4.1')
-    implementation 'com.google.firebase:firebase-analytics'
-
+    implementation platform('com.google.firebase:firebase-bom:29.0.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
 
     implementation 'com.google.code.gson:gson:2.8.7'
 }

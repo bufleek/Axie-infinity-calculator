@@ -54,7 +54,9 @@ class MainActivity : AppCompatActivity() {
             showFloatingWindow(true)
         }
 
-        modeNormal.setOnClickListener { showFloatingWindow() }
+        modeNormal.setOnClickListener {
+            showFloatingWindow()
+        }
 
         modePc.setOnClickListener {
             startActivity(Intent(this, PcActivity::class.java))

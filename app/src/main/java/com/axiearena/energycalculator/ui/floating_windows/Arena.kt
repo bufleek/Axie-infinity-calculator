@@ -10,12 +10,16 @@ import android.widget.TextView
 import android.widget.Toast
 import com.axiearena.energycalculator.R
 import com.axiearena.energycalculator.data.models.Session
+import com.axiearena.energycalculator.utils.ArenaActions
 import com.axiearena.energycalculator.utils.getCurrentDisplayMetrics
 import com.axiearena.energycalculator.utils.playSound
-import com.axiearena.energycalculator.utils.ArenaActions
 import com.axiearena.energycalculator.utils.windowParams
 
-class Arena(private val context: Context, private val isPcMode: Boolean = false, session: Session? = null) :
+class Arena(
+    private val context: Context,
+    private val isPcMode: Boolean = false,
+    session: Session? = null
+) :
     ArenaActions.OnArenaAction {
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private val layoutInflater =
@@ -51,66 +55,104 @@ class Arena(private val context: Context, private val isPcMode: Boolean = false,
         if (isPcMode) {
             root.visibility = View.VISIBLE
             root.background = null
-        }
-        tvWon.setOnClickListener {
-            if (isSoundEnabled) {
-                context.playSound()
-            }
-            if (won > 0) {
-                won--
-                updateArena()
-            }
-        }
-        tvLost.setOnClickListener {
-            if (isSoundEnabled) {
-                context.playSound()
-            }
-            if (lost > 0) {
-                lost--
-                updateArena()
-            }
-        }
-        tvDrawn.setOnClickListener {
-            if (isSoundEnabled) {
-                context.playSound()
 
+            root.findViewById<TextView>(R.id.tv_reset).setOnClickListener { reset() }
+            root.findViewById<ImageView>(R.id.reduce_wins).setOnClickListener { decreaseWins() }
+            root.findViewById<ImageView>(R.id.reduce_losses).setOnClickListener { decreaseLosses() }
+            root.findViewById<ImageView>(R.id.reduce_draws).setOnClickListener { decreaseDraws() }
+            root.findViewById<ImageView>(R.id.increase_wins).setOnClickListener { increaseWins() }
+            root.findViewById<ImageView>(R.id.increase_losses)
+                .setOnClickListener { increaseLosses() }
+            root.findViewById<ImageView>(R.id.increase_draws).setOnClickListener { increaseDraws() }
+        } else {
+            tvWon.setOnClickListener {
+                decreaseWins()
             }
-            if (drawn > 0) {
-                drawn--
-                updateArena()
+            tvLost.setOnClickListener {
+                decreaseLosses()
             }
-        }
-        imgWon.setOnClickListener {
-            if (isSoundEnabled) {
-                context.playSound()
+            tvDrawn.setOnClickListener {
+                decreaseDraws()
             }
-            won++
-            updateArena()
-        }
-        imgLost.setOnClickListener {
-            if (isSoundEnabled) {
-                context.playSound()
+            imgWon.setOnClickListener {
+                increaseWins()
             }
-            lost++
-            updateArena()
-        }
-        imgDrawn.setOnClickListener {
-            if (isSoundEnabled) {
-                context.playSound()
+            imgLost.setOnClickListener {
+                increaseLosses()
             }
-            drawn++
-            updateArena()
-        }
-        imgReset.setOnClickListener {
-            if (isSoundEnabled) {
-                context.playSound()
+            imgDrawn.setOnClickListener {
+                increaseDraws()
             }
-            drawn = 0
-            won = 0
-            lost = 0
-            updateArena()
+            imgReset.setOnClickListener {
+                reset()
+            }
         }
 
+        updateArena()
+    }
+
+    private fun increaseWins() {
+        if (isSoundEnabled) {
+            context.playSound()
+        }
+        won++
+        updateArena()
+    }
+
+    private fun decreaseWins() {
+        if (isSoundEnabled) {
+            context.playSound()
+        }
+        if (won > 0) {
+            won--
+            updateArena()
+        }
+    }
+
+    private fun increaseLosses() {
+        if (isSoundEnabled) {
+            context.playSound()
+        }
+        lost++
+        updateArena()
+    }
+
+    private fun decreaseLosses() {
+        if (isSoundEnabled) {
+            context.playSound()
+        }
+        if (lost > 0) {
+            lost--
+            updateArena()
+        }
+    }
+
+    private fun increaseDraws() {
+        if (isSoundEnabled) {
+            context.playSound()
+        }
+        drawn++
+        updateArena()
+    }
+
+    private fun decreaseDraws() {
+        if (isSoundEnabled) {
+            context.playSound()
+
+        }
+        if (drawn > 0) {
+            drawn--
+            updateArena()
+        }
+    }
+
+    private fun reset() {
+        if (isSoundEnabled) {
+            context.playSound()
+        }
+        drawn = 0
+        won = 0
+        lost = 0
         updateArena()
     }
 

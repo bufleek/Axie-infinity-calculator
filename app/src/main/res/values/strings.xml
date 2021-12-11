@@ -14,12 +14,16 @@
     <string name="draw_card_last_round">Draw Card Last Round</string>
     <string name="discard_card_last_round">Discard Card Last Round</string>
     <string name="calculate">Calculate</string>
-    <string name="welcome_axie">Welcome to Axie Infinity | Energy Calculator\nLet\'s start winning the Arena</string>
+    <string name="welcome_axie">Welcome!\nAre you ready to start winning Arena Matches?</string>
     <string name="customize_your_calculator">CUSTOMIZE YOUR CALCULATOR</string>
     <string name="pc_desktop_mode">PC/DESKTOP MODE</string>
     <string name="normal_mode">NORMAL MODE</string>
     <string name="basic_mode">BASIC MODE</string>
     <string name="settings">Settings</string>
+    <string name="use_guide">How to use Card Counter:\n
+1. You can use the Card Counter after Round 1.\n
+2. Count the Number of Cards Used by the opponent on the previous round.\n
+3. Check the number of Cards Last Round on the upper right side of the screen just besides the Settings. </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -13,6 +13,8 @@
         android:padding="10dp"
         android:text="ENERGY CALCULATOR"
         android:textAlignment="center"
+        android:textColor="@color/primary"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,7 +60,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/top"
             tools:layout_editor_absoluteX="0dp">
@@ -91,12 +93,12 @@
 
             <ImageView
                 android:id="@+id/img_energy_used"
-                android:layout_width="28dp"
+                android:layout_width="wrap_content"
                 android:layout_height="28dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/ic_energy_used"
-                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintEnd_toStartOf="@+id/reduce_energy_used"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/current_energy" />
 
@@ -104,162 +106,169 @@
                 android:id="@+id/energy_helper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:text="Energy used"
                 android:textColor="@color/onSurface"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/img_energy_used"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_energy_used" />
 
-            <LinearLayout
-                android:id="@+id/layout_energy_used"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/img_energy_used"
+            <ImageView
+                android:id="@+id/reduce_energy_used"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_baseline_remove_24"
+                app:layout_constraintEnd_toStartOf="@+id/energy_used"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/img_energy_used"
+                app:layout_constraintTop_toTopOf="@+id/img_energy_used" />
+
+            <TextView
+                android:id="@+id/energy_used"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/onSurface"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/increase_energy_used"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/reduce_energy_used"
+                app:layout_constraintTop_toTopOf="@+id/reduce_energy_used" />
+
+            <ImageView
+                android:id="@+id/increase_energy_used"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_baseline_add_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/img_energy_used">
-
-                <ImageView
-                    android:id="@+id/reduce_energy_used"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_baseline_remove_24" />
-
-                <TextView
-                    android:id="@+id/energy_used"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textColor="@color/onSurface"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/increase_energy_used"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_baseline_add_24" />
-
-            </LinearLayout>
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/energy_used"
+                app:layout_constraintTop_toTopOf="@+id/energy_used" />
 
             <ImageView
                 android:id="@+id/img_energy_destroyed"
-                android:layout_width="28dp"
+                android:layout_width="wrap_content"
                 android:layout_height="28dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_energy_destroyed"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toStartOf="@+id/img_energy_used"
-                app:layout_constraintTop_toBottomOf="@+id/layout_energy_used" />
+                app:layout_constraintEnd_toStartOf="@+id/reduce_energy_destroyed"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/energy_helper" />
 
             <TextView
                 android:id="@+id/destroyed_helper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:text="Energy Destroyed"
                 android:textColor="@color/onSurface"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/img_energy_used"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_energy_destroyed" />
 
-            <LinearLayout
-                android:id="@+id/layout_energy_destroyed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/img_energy_destroyed"
+            <ImageView
+                android:id="@+id/reduce_energy_destroyed"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_baseline_remove_24"
+                app:layout_constraintEnd_toStartOf="@+id/energy_destroyed"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/img_energy_destroyed"
+                app:layout_constraintTop_toTopOf="@+id/img_energy_destroyed" />
+
+            <TextView
+                android:id="@+id/energy_destroyed"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/onSurface"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/increase_energy_destroyed"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/reduce_energy_destroyed"
+                app:layout_constraintTop_toTopOf="@+id/reduce_energy_destroyed" />
+
+            <ImageView
+                android:id="@+id/increase_energy_destroyed"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_baseline_add_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/img_energy_destroyed">
-
-                <ImageView
-                    android:id="@+id/reduce_energy_destroyed"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_baseline_remove_24" />
-
-                <TextView
-                    android:id="@+id/energy_destroyed"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textColor="@color/onSurface"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/increase_energy_destroyed"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_baseline_add_24" />
-
-            </LinearLayout>
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/energy_destroyed"
+                app:layout_constraintTop_toTopOf="@+id/energy_destroyed" />
 
             <ImageView
                 android:id="@+id/img_energy_gained"
-                android:layout_width="28dp"
+                android:layout_width="wrap_content"
                 android:layout_height="28dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_energy_gained"
+                app:layout_constraintEnd_toStartOf="@+id/reduce_energy_gained"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toStartOf="@+id/img_energy_destroyed"
-                app:layout_constraintTop_toBottomOf="@+id/img_energy_destroyed" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/destroyed_helper"
+                app:layout_goneMarginTop="10dp" />
 
             <TextView
                 android:id="@+id/gained_helper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:text="Energy Gained"
                 android:textColor="@color/onSurface"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/img_energy_used"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_energy_gained" />
 
-            <LinearLayout
-                android:id="@+id/layout_energy_gained"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/img_energy_gained"
+            <ImageView
+                android:id="@+id/reduce_energy_gained"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_baseline_remove_24"
+                app:layout_constraintEnd_toStartOf="@+id/energy_gained"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/img_energy_gained"
+                app:layout_constraintTop_toTopOf="@+id/img_energy_gained" />
+
+            <TextView
+                android:id="@+id/energy_gained"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/onSurface"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/increase_energy_gained"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/reduce_energy_gained"
+                app:layout_constraintTop_toTopOf="@+id/reduce_energy_gained" />
+
+            <ImageView
+                android:id="@+id/increase_energy_gained"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@android:color/transparent"
+                android:src="@drawable/ic_baseline_add_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/img_energy_gained">
-
-                <ImageView
-                    android:id="@+id/reduce_energy_gained"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_baseline_remove_24" />
-
-                <TextView
-                    android:id="@+id/energy_gained"
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textColor="@color/onSurface"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/increase_energy_gained"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/ic_baseline_add_24" />
-
-            </LinearLayout>
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/energy_gained"
+                app:layout_constraintTop_toTopOf="@+id/energy_gained" />
 
             <ImageView
                 android:id="@+id/img_undo"
@@ -309,35 +318,37 @@
         android:id="@+id/reset_rounds"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        android:paddingVertical="8dp"
         android:background="@drawable/bg_overlay"
         android:gravity="center"
         android:letterSpacing="0.1"
         android:paddingHorizontal="10dp"
+        android:paddingVertical="8dp"
         android:text="@string/reset"
         android:textColor="@color/primary"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/calculate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/calculate"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginEnd="10dp"
         android:background="@drawable/bg_overlay"
         android:gravity="center"
-        android:paddingVertical="8dp"
         android:letterSpacing="0.1"
         android:paddingHorizontal="10dp"
+        android:paddingVertical="8dp"
         android:text="@string/next"
         android:textColor="@color/primary"
         android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/reset_rounds"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reset_rounds" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reset_rounds" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/thumb_menu"

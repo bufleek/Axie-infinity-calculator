@@ -3,10 +3,10 @@ package com.axiearena.energycalculator.utils
 import com.axiearena.energycalculator.data.models.SlpCalculatorData
 
 class SlpActions private constructor() {
-    var listener: OnArenaAction? = null
+    var listener: OnSlpAction? = null
     var slpCalculatorData = SlpCalculatorData()
 
-    interface OnArenaAction {
+    interface OnSlpAction {
         fun onOpen()
         fun onClose()
         fun onColorChanged(color: Int)

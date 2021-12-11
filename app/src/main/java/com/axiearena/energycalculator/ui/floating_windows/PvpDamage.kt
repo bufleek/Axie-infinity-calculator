@@ -1,6 +1,7 @@
 package com.axiearena.energycalculator.ui.floating_windows
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Point
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -15,7 +16,8 @@ import com.axiearena.energycalculator.utils.registerDraggableTouchListener
 import com.axiearena.energycalculator.utils.windowParams
 
 class PvpDamage(
-    private val context: Context
+    private val context: Context,
+    private val color: Int
 ) : PvpActions.OnPvpAction {
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private val layoutInflater =
@@ -28,6 +30,7 @@ class PvpDamage(
         PvpActions.getInstance().listener = this
         initWindowParams()
         initWindow()
+        onColorChanged(color)
     }
 
     private fun calculateSizeAndPosition(
@@ -39,8 +42,8 @@ class PvpDamage(
         params.gravity = Gravity.TOP or Gravity.LEFT
         params.width = (widthInDp * dm.density).toInt()
         params.height = (heightInDp * dm.density).toInt()
-        params.x = ((dm.widthPixels - params.width)/2).toInt()
-        params.y = ((dm.heightPixels - params.height)/2).toInt()
+        params.x = ((dm.widthPixels - params.width) / 2).toInt()
+        params.y = ((dm.heightPixels - params.height) / 2).toInt()
     }
 
     private fun initWindowParams() {
@@ -57,7 +60,7 @@ class PvpDamage(
             positionListener = { x, y -> setPosition(x, y) }
         )
         root.findViewById<ImageButton>(R.id.pvp_close).setOnClickListener {
-            if (isSoundEnabled){
+            if (isSoundEnabled) {
                 context.playSound()
             }
             onClose()
@@ -81,10 +84,9 @@ class PvpDamage(
     }
 
     override fun onOpen() {
-        if (isOpen){
+        if (isOpen) {
             onClose()
-        }
-        else{
+        } else {
             try {
                 initWindowParams()
                 windowManager.addView(root, windowParams)
@@ -107,6 +109,11 @@ class PvpDamage(
 
     override fun onSoundConfigsChange(isSoundEnabled: Boolean) {
         this.isSoundEnabled = isSoundEnabled
+    }
+
+    override fun onColorChanged(color: Int) {
+        val colorState = ColorStateList.valueOf(color)
+        root.backgroundTintList = colorState
     }
 
     companion object {

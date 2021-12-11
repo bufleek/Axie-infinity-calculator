@@ -7,6 +7,7 @@ class PvpActions private constructor() {
         fun onOpen()
         fun onClose()
         fun onSoundConfigsChange(isSoundEnabled: Boolean)
+        fun onColorChanged(color: Int)
     }
 
     companion object {

@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "362486551758",
-    "project_id": "axie-energy-calculator-98c1d",
-    "storage_bucket": "axie-energy-calculator-98c1d.appspot.com"
+    "project_number": "15440866417",
+    "project_id": "axie-arena-energy-calculator",
+    "storage_bucket": "axie-arena-energy-calculator.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:362486551758:android:694999a4cb6f1d30cf2c9f",
+        "mobilesdk_app_id": "1:15440866417:android:6125b984cba9722fddffd0",
         "android_client_info": {
-          "package_name": "com.axieinfinity.calculator"
+          "package_name": "com.axiearena.energycalculator"
         }
       },
       "oauth_client": [
         {
-          "client_id": "362486551758-mg6dscn7blr5mjiqi2ke2v3p5a3q1eat.apps.googleusercontent.com",
+          "client_id": "15440866417-s68aca89oh7e23ek433cnvprenhpqdga.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAt_jrYXjH1hJ-5vO0jliTWXbEPbeTnlBE"
+          "current_key": "AIzaSyBACUDkL40FYN2TpaZUrDjUJyLD-U9Tu0o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "362486551758-mg6dscn7blr5mjiqi2ke2v3p5a3q1eat.apps.googleusercontent.com",
+              "client_id": "15440866417-s68aca89oh7e23ek433cnvprenhpqdga.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

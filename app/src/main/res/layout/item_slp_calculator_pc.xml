@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_floating_window">
 
+    <ImageButton
+        android:id="@+id/arena_close"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_close"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView7"
         android:layout_width="match_parent"
@@ -13,6 +23,8 @@
         android:padding="10dp"
         android:text="SLP CALCULATOR"
         android:textAlignment="center"
+        android:textColor="@color/primary"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,8 +61,8 @@
 
         <TextView
             android:id="@+id/tv_slp_1"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="+1"
             android:textColor="@color/onSurface"
@@ -62,7 +74,7 @@
 
         <TextView
             android:id="@+id/tv_slp_3"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:gravity="center"
             android:text="+3"
@@ -75,7 +87,7 @@
 
         <TextView
             android:id="@+id/tv_slp_6"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:gravity="center"
             android:text="+6"
@@ -88,7 +100,7 @@
 
         <TextView
             android:id="@+id/tv_slp_9"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
@@ -102,7 +114,7 @@
 
         <TextView
             android:id="@+id/tv_slp_12"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:gravity="center"
             android:text="+12"
@@ -115,7 +127,7 @@
 
         <TextView
             android:id="@+id/tv_slp_15"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:gravity="center"
             android:text="+15"
@@ -127,10 +139,9 @@
             app:layout_constraintTop_toTopOf="@+id/tv_slp_12" />
 
 
-
         <TextView
             android:id="@+id/tv_slp_18"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
@@ -144,7 +155,7 @@
 
         <TextView
             android:id="@+id/tv_slp_21"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:gravity="center"
             android:text="+21"
@@ -157,7 +168,7 @@
 
         <TextView
             android:id="@+id/tv_slp_24"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:gravity="center"
             android:text="+24"
@@ -173,14 +184,17 @@
         android:id="@+id/tv_slp_reset"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="Reset"
-        android:textColor="@color/primary"
         android:letterSpacing="0.1"
         android:paddingHorizontal="10dp"
+        android:text="Reset"
+        android:textColor="@color/primary"
         android:textStyle="bold"
-        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_slp_undo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -188,12 +202,14 @@
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:gravity="center"
+        android:letterSpacing="0.1"
+        android:paddingHorizontal="10dp"
         android:text="Undo"
         android:textColor="@color/primary"
-        android:letterSpacing="0.1"
         android:textStyle="bold"
-        android:paddingHorizontal="10dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_slp_reset"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_slp_reset" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_slp_reset" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

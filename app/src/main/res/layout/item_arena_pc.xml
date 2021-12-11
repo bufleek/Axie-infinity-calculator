@@ -11,15 +11,17 @@
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ARENA TRACKER"
         android:padding="10dp"
+        android:text="ARENA TRACKER"
         android:textAlignment="center"
+        android:textColor="@color/primary"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_reset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6">
@@ -28,80 +30,155 @@
             android:id="@+id/won"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/overlay"
             android:gravity="center"
             android:text="0"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/reduce_wins"
+            app:layout_constraintEnd_toStartOf="@+id/increase_wins"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/reduce_wins"
+            app:layout_constraintTop_toTopOf="@+id/reduce_wins" />
+
+        <ImageView
+            android:id="@+id/reduce_wins"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_remove_24"
+            app:layout_constraintBottom_toBottomOf="@+id/img_won"
+            app:layout_constraintEnd_toStartOf="@+id/won"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/img_won"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/img_won" />
 
         <ImageView
             android:id="@+id/img_won"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/ic_win"
+            app:layout_constraintEnd_toStartOf="@+id/reduce_wins"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/won" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/increase_wins"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="@+id/reduce_wins"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/won"
+            app:layout_constraintTop_toTopOf="@+id/reduce_wins" />
 
         <TextView
             android:id="@+id/lost"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/overlay"
             android:gravity="center"
             android:text="0"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/img_lost"
-            app:layout_constraintTop_toBottomOf="@+id/img_won"
-            tools:layout_editor_absoluteX="8dp" />
+            app:layout_constraintBottom_toBottomOf="@+id/reduce_losses"
+            app:layout_constraintEnd_toStartOf="@+id/increase_losses"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/reduce_losses"
+            app:layout_constraintTop_toTopOf="@+id/reduce_losses" />
 
         <ImageView
             android:id="@+id/img_lost"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/ic_lose"
+            app:layout_constraintEnd_toStartOf="@+id/reduce_losses"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/lost" />
+            app:layout_constraintTop_toBottomOf="@+id/img_won" />
+
+        <ImageView
+            android:id="@+id/reduce_losses"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_remove_24"
+            app:layout_constraintEnd_toStartOf="@+id/lost"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/img_lost"
+            app:layout_constraintTop_toTopOf="@+id/img_lost" />
+
+        <ImageView
+            android:id="@+id/increase_losses"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lost"
+            app:layout_constraintTop_toTopOf="@+id/reduce_losses" />
 
         <TextView
             android:id="@+id/drawn"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/overlay"
             android:gravity="center"
             android:text="0"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/img_drawn"
-            app:layout_constraintTop_toBottomOf="@+id/img_lost"
-            tools:layout_editor_absoluteX="8dp" />
+            app:layout_constraintBottom_toBottomOf="@+id/reduce_draws"
+            app:layout_constraintEnd_toStartOf="@+id/increase_draws"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/reduce_draws"
+            app:layout_constraintTop_toTopOf="@+id/reduce_draws" />
 
         <ImageView
             android:id="@+id/img_drawn"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/draw"
+            app:layout_constraintEnd_toStartOf="@+id/reduce_draws"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/drawn"
-            tools:layout_editor_absoluteX="56dp" />
+            app:layout_constraintTop_toBottomOf="@+id/img_lost" />
+
+        <ImageView
+            android:id="@+id/reduce_draws"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_remove_24"
+            app:layout_constraintEnd_toStartOf="@+id/drawn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/img_drawn"
+            app:layout_constraintTop_toTopOf="@+id/img_drawn" />
+
+        <ImageView
+            android:id="@+id/increase_draws"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/drawn"
+            app:layout_constraintTop_toTopOf="@+id/reduce_draws" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginVertical="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
             app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/img_drawn">
 
@@ -110,9 +187,24 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:padding="8dp"
-                android:src="@drawable/ic_undo" />
-
+                android:src="@drawable/ic_undo"
+                android:visibility="gone" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:paddingHorizontal="20dp"
+        android:text="@string/reset"
+        android:textColor="@color/primary"
+        android:textStyle="bold"
+        android:letterSpacing="0.1"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

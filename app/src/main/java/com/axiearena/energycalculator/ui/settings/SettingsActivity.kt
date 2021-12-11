@@ -58,6 +58,7 @@ class SettingsActivity : AppCompatActivity() {
             FloatingWindowActions.getInstance().listener?.onColorChanged(color)
             CardCounterActions.getInstance().listener?.onColorChanged(color)
             SlpActions.getInstance().listener?.onColorChanged(color)
+            PvpActions.getInstance().listener?.onColorChanged(color)
             themeColor = color
         }
 

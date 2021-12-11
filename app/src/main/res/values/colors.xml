@@ -6,4 +6,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="overlay">#B0FFFFFF</color>
     <color name="surface">#ffffff</color>
+    <color name="dividers">#c1c1c1</color>
 </resources>

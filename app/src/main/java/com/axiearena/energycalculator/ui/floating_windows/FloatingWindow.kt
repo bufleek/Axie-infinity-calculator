@@ -72,7 +72,8 @@ class FloatingWindow(
                 Arena(context, false, session = session)
                 Menu(context, isSubscribed)
                 SLPCalculator(context, color, false, session = session)
-                PvpDamage(context)
+                PvpDamage(context, color)
+                CardCounterHelp(context)
                 CardCounterActions.getInstance().listener?.onColorChanged(color)
             }
         }

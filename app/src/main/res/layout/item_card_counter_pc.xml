@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_overlay">
 
+    <ImageButton
+        android:id="@+id/img_help"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_help"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
@@ -13,6 +23,8 @@
         android:padding="10dp"
         android:text="CARD COUNTER"
         android:textAlignment="center"
+        android:textColor="@color/primary"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
@@ -155,28 +167,31 @@
         android:id="@+id/reset"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
+        android:layout_marginBottom="10dp"
         android:letterSpacing="0.1"
         android:paddingHorizontal="10dp"
-        android:layout_marginBottom="10dp"
         android:paddingVertical="8dp"
         android:text="@string/reset"
         android:textColor="@color/primary"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/calculate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/calculate"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginEnd="10dp"
         android:letterSpacing="0.1"
         android:paddingHorizontal="10dp"
         android:paddingVertical="8dp"
         android:text="@string/calculate"
         android:textColor="@color/primary"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/reset"
+        app:layout_constraintBaseline_toBaselineOf="@+id/reset"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reset" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/reset" />
 </androidx.constraintlayout.widget.ConstraintLayout>

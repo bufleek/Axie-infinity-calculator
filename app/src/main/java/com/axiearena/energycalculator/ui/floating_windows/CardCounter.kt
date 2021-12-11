@@ -10,11 +10,7 @@ import android.view.WindowManager
 import android.widget.*
 import com.axiearena.energycalculator.R
 import com.axiearena.energycalculator.data.models.Session
-import com.axiearena.energycalculator.utils.getCurrentDisplayMetrics
-import com.axiearena.energycalculator.utils.playSound
-import com.axiearena.energycalculator.utils.CardCounterActions
-import com.axiearena.energycalculator.utils.registerDraggableTouchListener
-import com.axiearena.energycalculator.utils.windowParams
+import com.axiearena.energycalculator.utils.*
 
 class CardCounter(
     private val context: Context,
@@ -36,6 +32,7 @@ class CardCounter(
     private val reset: TextView = root.findViewById(R.id.reset)
     private val calculate: TextView = root.findViewById(R.id.calculate)
     private val imgClose: ImageButton = root.findViewById(R.id.img_close)
+    private val imgHelp: ImageButton = root.findViewById(R.id.img_help)
     private val topFrame: FrameLayout = root.findViewById(R.id.top_frame)
     private var currentCards = session?.cardCounterData?.cards ?: 3
     private var cardLastRound = 0
@@ -80,6 +77,10 @@ class CardCounter(
             }
 
             onClose()
+        }
+
+        imgHelp.setOnClickListener {
+            CardCounterHelpActions.getInstance().listener?.onOpen()
         }
 
         if (isPcMode) {

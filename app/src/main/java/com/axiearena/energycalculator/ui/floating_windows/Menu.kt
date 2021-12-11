@@ -15,7 +15,8 @@ import com.axiearena.energycalculator.utils.playSound
 import com.axiearena.energycalculator.utils.*
 import com.axiearena.energycalculator.utils.windowParams
 
-class Menu(private val context: Context, private val isSubscribed: Boolean): WindowActions.OnWindowAction, MenuActions.OnMenuAction {
+class Menu(private val context: Context, private val isSubscribed: Boolean) :
+    WindowActions.OnWindowAction, MenuActions.OnMenuAction {
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private val layoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -36,45 +37,47 @@ class Menu(private val context: Context, private val isSubscribed: Boolean): Win
         open()
     }
 
-    private fun initMenu(){
+    private fun initMenu() {
         imgClose.setOnClickListener {
             ArenaActions.getInstance().listener?.onClose()
             CardCounterActions.getInstance().listener?.onClose()
             SlpActions.getInstance().listener?.onClose()
             FloatingWindowActions.getInstance().listener?.onClose()
+            PvpActions.getInstance().listener?.onClose()
 
             FloatingWindowActions.getInstance().listener = null
             CardCounterActions.getInstance().listener = null
             ArenaActions.getInstance().listener = null
             SlpActions.getInstance().listener = null
+            PvpActions.getInstance().listener = null
             windowManager.removeView(root)
         }
         cardSlp.setOnClickListener {
-            if (isSoundEnabled){
+            if (isSoundEnabled) {
                 context.playSound()
             }
             SlpActions.getInstance().listener?.onOpen()
         }
         cardPVP.setOnClickListener {
-            if (isSoundEnabled){
+            if (isSoundEnabled) {
                 context.playSound()
             }
             PvpActions.getInstance().listener?.onOpen()
         }
         cardArena.setOnClickListener {
-            if (isSoundEnabled){
+            if (isSoundEnabled) {
                 context.playSound()
             }
             ArenaActions.getInstance().listener?.onOpen()
         }
         cardCardCounter.setOnClickListener {
-            if (isSoundEnabled){
+            if (isSoundEnabled) {
                 context.playSound()
             }
             CardCounterActions.getInstance().listener?.onOpen()
         }
         cardEnergyCalc.setOnClickListener {
-            if (isSoundEnabled){
+            if (isSoundEnabled) {
                 context.playSound()
             }
             FloatingWindowActions.getInstance().listener?.onOpen()
@@ -159,7 +162,7 @@ class Menu(private val context: Context, private val isSubscribed: Boolean): Win
         ArenaActions.getInstance().listener?.onConfigsChange()
     }
 
-    companion object{
+    companion object {
         private const val MENU_HEIGHT = 254
         const val MENU_WIDTH = 35
     }

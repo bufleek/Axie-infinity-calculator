@@ -6,6 +6,7 @@ import android.graphics.Point
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.WindowManager
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.axiearena.energycalculator.R
@@ -21,14 +22,18 @@ class SLPCalculator(
     private val color: Int,
     private val isPcMode: Boolean = false,
     session: Session? = null
-) : SlpActions.OnArenaAction {
+) : SlpActions.OnSlpAction {
     private val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private val layoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    val root = layoutInflater.inflate(if(isPcMode) R.layout.item_slp_calculator_pc else R.layout.item_slp_calculator, null)
+    val root = layoutInflater.inflate(
+        if (isPcMode) R.layout.item_slp_calculator_pc else R.layout.item_slp_calculator,
+        null
+    )
     private var isOpen = false
     private var isSoundEnabled = false
 
+    private val btnClose: ImageButton = root.findViewById(R.id.arena_close)
     private val tvSlpHistory: TextView = root.findViewById(R.id.tv_slp_history)
     private val tvSlp: TextView = root.findViewById(R.id.tv_slp)
     private val tvSlp1: TextView = root.findViewById(R.id.tv_slp_1)
@@ -119,6 +124,10 @@ class SLPCalculator(
             }
             slpHistoryList.removeLastOrNull()
             updateViewData()
+        }
+
+        btnClose.setOnClickListener {
+            onClose()
         }
 
         updateViewData()
