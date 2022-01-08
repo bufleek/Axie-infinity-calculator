@@ -39,18 +39,7 @@ class Menu(private val context: Context, private val isSubscribed: Boolean) :
 
     private fun initMenu() {
         imgClose.setOnClickListener {
-            ArenaActions.getInstance().listener?.onClose()
-            CardCounterActions.getInstance().listener?.onClose()
-            SlpActions.getInstance().listener?.onClose()
-            FloatingWindowActions.getInstance().listener?.onClose()
-            PvpActions.getInstance().listener?.onClose()
-
-            FloatingWindowActions.getInstance().listener = null
-            CardCounterActions.getInstance().listener = null
-            ArenaActions.getInstance().listener = null
-            SlpActions.getInstance().listener = null
-            PvpActions.getInstance().listener = null
-            windowManager.removeView(root)
+            close()
         }
         cardSlp.setOnClickListener {
             if (isSoundEnabled) {
@@ -113,6 +102,25 @@ class Menu(private val context: Context, private val isSubscribed: Boolean) :
         windowParams.x = x
         windowParams.y = y
         updateWindow()
+    }
+
+    private fun close(){
+        ArenaActions.getInstance().listener?.onClose()
+        CardCounterActions.getInstance().listener?.onClose()
+        SlpActions.getInstance().listener?.onClose()
+        FloatingWindowActions.getInstance().listener?.onClose()
+        PvpActions.getInstance().listener?.onClose()
+
+        FloatingWindowActions.getInstance().listener = null
+        CardCounterActions.getInstance().listener = null
+        ArenaActions.getInstance().listener = null
+        SlpActions.getInstance().listener = null
+        PvpActions.getInstance().listener = null
+        windowManager.removeView(root)
+    }
+
+    override fun onClose() {
+        close()
     }
 
     private fun updateWindow() {

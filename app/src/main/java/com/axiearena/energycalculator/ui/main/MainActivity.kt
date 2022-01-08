@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.lifecycle.lifecycleScope
 import com.axiearena.energycalculator.R
 import com.axiearena.energycalculator.data.models.Session
 import com.axiearena.energycalculator.ui.settings.SettingsActivity
@@ -73,14 +74,13 @@ class MainActivity : AppCompatActivity() {
                 .data.map {
                     it[sessionPreference]
                 }
-            CoroutineScope(Dispatchers.Main).launch {
+            lifecycleScope.launch {
                 sessionFlow.collect {
                     session = Gson().fromJson(it, object : TypeToken<Session>() {}.type)
                     if (it != null) {
                         delay(500)
                         SessionFragment.newInstance(it).show(supportFragmentManager, null)
                     }
-                    cancel()
                 }
             }
         }
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 it[colorPrefKey] ?: ContextCompat.getColor(this@MainActivity, R.color.overlay)
             }
 
-            CoroutineScope(Dispatchers.Main).launch {
+            lifecycleScope.launch {
                 colorFlow.collectLatest {
                     themeColor = it
                     FloatingWindowActions.getInstance().listener?.onColorChanged(it)
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             val soundFlow: Flow<Boolean> = dataStore.data.map {
                 it[soundPrefKey] ?: true
             }
-            CoroutineScope(Dispatchers.Main).launch {
+            lifecycleScope.launch {
                 soundFlow.collectLatest {
                     FloatingWindowActions.getInstance().listener?.onSoundConfigChanged(it)
                 }

@@ -5,6 +5,7 @@ class MenuActions private constructor() {
 
     interface OnMenuAction {
         fun onSoundConfigsChange(isSoundEnabled: Boolean)
+        fun onClose()
     }
 
     companion object {

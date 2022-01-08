@@ -10,21 +10,16 @@ import android.provider.Settings
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import com.axiearena.energycalculator.R
 import com.axiearena.energycalculator.data.models.Session
 import com.axiearena.energycalculator.ui.floating_windows.FloatingWindow
 import com.axiearena.energycalculator.ui.main.MainActivity
-import com.axiearena.energycalculator.ui.settings.SettingsActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 class FloatingService : Service(), ServiceActions.OnServiceAction {
@@ -45,9 +40,17 @@ class FloatingService : Service(), ServiceActions.OnServiceAction {
             putExtra(INTENT_COMMAND, INTENT_COMMAND_EXIT)
         }
 
-        val exitPendingIntent = PendingIntent.getService(
-            this, CODE_EXIT_INTENT, exitIntent, 0
-        )
+        val exitPendingIntent =
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            PendingIntent.getService(
+                this, CODE_EXIT_INTENT, exitIntent, PendingIntent.FLAG_IMMUTABLE
+            )
+        }
+        else {
+            PendingIntent.getService(
+                this, CODE_EXIT_INTENT, exitIntent, 0
+            )
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
@@ -82,7 +85,7 @@ class FloatingService : Service(), ServiceActions.OnServiceAction {
             setWhen(System.currentTimeMillis())
             setSmallIcon(R.mipmap.ic_launcher)
             priority = Notification.PRIORITY_DEFAULT
-            setContentIntent(exitPendingIntent)
+            addAction(R.drawable.ic_baseline_close_24, "Close All Popups", exitPendingIntent)
 
             startForeground(CODE_FOREGROUND_SERVICE, build())
         }
@@ -98,9 +101,13 @@ class FloatingService : Service(), ServiceActions.OnServiceAction {
         val isBasicMode =
             intent?.getBooleanExtra(INTENT_IS_BASIC_MODE, false) ?: false
 
-        val session: Session? = Gson().fromJson(intent?.getStringExtra(INTENT_SESSION), object : TypeToken<Session>(){}.type)
+        val session: Session? = Gson().fromJson(
+            intent?.getStringExtra(INTENT_SESSION),
+            object : TypeToken<Session>() {}.type
+        )
 
         if (command == INTENT_COMMAND_EXIT) {
+            MenuActions.getInstance().listener?.onClose()
             stopService()
             return START_NOT_STICKY
         }
@@ -111,8 +118,14 @@ class FloatingService : Service(), ServiceActions.OnServiceAction {
             startMainActivity()
         }
 
-        if(FloatingWindowActions.getInstance().listener == null){
-            FloatingWindow(this, themeColor, isPcMode = false, isBasicMode = isBasicMode, session = session)
+        if (FloatingWindowActions.getInstance().listener == null) {
+            FloatingWindow(
+                this,
+                themeColor,
+                isPcMode = false,
+                isBasicMode = isBasicMode,
+                session = session
+            )
         }
         return START_STICKY
     }
@@ -158,7 +171,7 @@ fun Context.startMainActivity(message: String? = null) {
     startActivity(
         Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            if (message != null){
+            if (message != null) {
                 putExtra(MainActivity.INTENT_ROUNDS_EXHAUSTED, message)
             }
         }

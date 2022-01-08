@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Energy Calculator</string>
     <string name="notification_channel_general">General Notifications</string>
-    <string name="notification_text">Energy calculator popup is running, click to terminate</string>
+    <string name="notification_text">Energy calculator popup is running</string>
     <string name="common_ok">OK</string>
     <string name="permission_error_title">Permissions not granted</string>
     <string name="permission_error_text">The app will not function properly</string>

@@ -5,6 +5,8 @@ plugins {
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
+//signing key password - axieinfinity
+
 android {
     compileSdk 31
 
@@ -12,8 +14,8 @@ android {
         applicationId "com.axiearena.energycalculator"
         minSdk 21
         targetSdk 31
-        versionCode 6
-        versionName "3.1.0"
+        versionCode 7
+        versionName "3.2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
